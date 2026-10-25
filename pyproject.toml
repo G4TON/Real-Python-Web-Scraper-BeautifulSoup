@@ -1,0 +1,19 @@
+[project]
+name = "real-python-web-scraper-beautifulsoup"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Gopathi Krishna U Nair", email = "gopathikrishnaunair@proton.me" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+real-python-web-scraper-beautifulsoup = "real_python_web_scraper_beautifulsoup:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
