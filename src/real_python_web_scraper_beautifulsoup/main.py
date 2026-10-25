@@ -8,11 +8,12 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 result = soup.find(id="ResultsContainer")
 
-job_cards = result.find_all("div", class_ = "card-content")
-
-for job_card in job_cards:
-    title_element = job_card.find("h2", class_ = "title")
-    company_element = job_card.find("h3", class_ = "company")
-    location_element = job_card.find("p", class_ = "location")
-    print(title_element.text.strip(), company_element.text.strip(), location_element.text.strip(), sep='\n', end='\n\n')
+python_jobs = result.find_all('h2', string=lambda text: "python" in text.lower())
+python_job_cards = [h2.parent.parent.parent for h2 in python_jobs]
     
+for job in python_job_cards:
+    title = job.find("h2", class_='title')
+    company = job.find('h3', class_='company')
+    location = job.find('p', class_='location')
+    print(title.text.strip(), company.text.strip(), location.text.strip(), sep='\n', end='\n\n')
+
