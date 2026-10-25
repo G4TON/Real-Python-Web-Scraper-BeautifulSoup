@@ -15,5 +15,11 @@ for job in python_job_cards:
     title = job.find("h2", class_='title')
     company = job.find('h3', class_='company')
     location = job.find('p', class_='location')
-    print(title.text.strip(), company.text.strip(), location.text.strip(), sep='\n', end='\n\n')
+    link = job.find_all('a')[1]['href']
+    print(title.text.strip(), company.text.strip(), location.text.strip(), link, sep='\n') 
+
+    sub_page = requests.get(link)
+    sub_soup = BeautifulSoup(sub_page.content, 'html.parser')
+    content = sub_soup.find('div', class_='content')
+    print(content.find('p').text.strip(), end='\n\n')
 
